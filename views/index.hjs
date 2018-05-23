@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <ul>
+    {{#timers}}
+      {{#room}}
+      <li><a href="/timer/{{id}}">{{room}}({{ip}})</a></li>
+      {{/room}}
+      {{^room}}
+      <li>{{ip}} has no room</a></li>
+      {{/room}}
+    {{/timers}}
+    </ul>
+  </body>
+</html>
