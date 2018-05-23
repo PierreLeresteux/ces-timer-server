@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   var ip = req.body.ip
-  timerMiddleware.addTimer(ip);
-  res.send(timerMiddleware.getAllTimers());
+  res.send(timerMiddleware.addTimer(ip));
 });
 
+router.get('/:id', function(req,res,next){
+  res.send(timerMiddleware.getTimer(req.params.id))
+});
 module.exports = router;
