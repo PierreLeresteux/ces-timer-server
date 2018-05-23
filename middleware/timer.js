@@ -18,6 +18,13 @@ const timer = {
         return this.timers.find(function(e){return e.id===id});
 
     },
+
+    setRoom(id,room){
+        var timer = this.getTimer(id);
+        timer.room=room;
+        this.timers[this.timers.findIndex(function(e){return e.id===id})]=timer;
+        return timer;
+    },
     nextId(){   
         id+=1;
         return id;
