@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Info about {{timer.room}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Info about {{timer.room}}</h1>
+    <ul>
+        <li>id : {{timer.id}}</li>
+        <li>ip : {{timer.ip}}</li>
+        <li>error : {{timer.error}}</li>
+        <li>room : {{#timer.room}}{{timer.room}}{{/timer.room}}{{^timer.room}}No room{{/timer.room}}</li>    
+    </ul>
+  </body>
+</html>
