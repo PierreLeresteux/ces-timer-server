@@ -9,7 +9,7 @@
     <ul>
     {{#timers}}
       {{#room}}
-      <li><a href="/timer/{{id}}">{{room}}({{ip}})</a></li>
+      <li><a href="/timer/{{id}}/info">{{room}}({{ip}})</a></li>
       {{/room}}
       {{^room}}
       <li>{{ip}} has no room</a></li>

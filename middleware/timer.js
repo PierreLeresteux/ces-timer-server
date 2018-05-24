@@ -42,11 +42,15 @@ const timer = {
             if (err || body!=='ok'){
                 timer.error+=1
                 this.timers[index]=timer
+            }else{
+                timer.error=0
+                this.timers[index]=timer
             }
             if (timer.error>=blacklist.nbErrorMax){
                 console.log("Remove "+timer.room)
                 this.timers.splice(index, 1);
             }else{
+                
                 console.log(JSON.stringify(body));
                 setTimeout(()=>{this.callTimer(index)},blacklist.timer);
             }

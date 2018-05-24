@@ -17,6 +17,11 @@ router.get('/:id', function(req,res,next){
   res.send(timerMiddleware.getTimer(req.params.id))
 });
 
+router.get('/:id/info', function(req,res,next){
+  const timer = timerMiddleware.getTimer(req.params.id)
+  res.render('timerInfo', { timer: timer });
+});
+
 router.put('/:id', function(req,res,next){
   var room = req.body.room;
   res.send(timerMiddleware.setRoom(req.params.id,room));
