@@ -5,7 +5,7 @@ const blacklist= {
     timer:3000,
     nbErrorMax:3,
     wemosHttpPort:3001
-},
+}
 const timer = {
     
     timers:[],
