@@ -1,8 +1,11 @@
 const request = require('request');
 
 var id=0;
-const delayCalltimer=3000;
-const blacklistError=3;
+const blacklist= {
+    timer:3000,
+    nbErrorMax:3,
+    wemosHttpPort:3001
+},
 const timer = {
     
     timers:[],
@@ -29,26 +32,25 @@ const timer = {
         timer.room=room;
         var index=this.timers.findIndex(function(e){return e.id===id})
         this.timers[index]=timer;
-        setTimeout(()=>{this.callTimer(index)},delayCalltimer);
+        setTimeout(()=>{this.callTimer(index)},blacklist.timer);
         return timer;
     },
     callTimer(index){
         var timer=this.timers[index];
         console.log(timer.room)
-        request('http://'+timer.ip+":3001/ruok", { json: true }, (err, res, body) => {
+        request('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/ruok", { json: true }, (err, res, body) => {
             if (err || body!=='ok'){
                 timer.error+=1
                 this.timers[index]=timer
             }
-            if (timer.error>=blacklistError){
+            if (timer.error>=blacklist.nbErrorMax){
                 console.log("Remove "+timer.room)
                 this.timers.splice(index, 1);
             }else{
                 console.log(JSON.stringify(body));
-                setTimeout(()=>{this.callTimer(index)},delayCalltimer);
+                setTimeout(()=>{this.callTimer(index)},blacklist.timer);
             }
         });  
-        
     },
     nextId(){   
         id+=1;
