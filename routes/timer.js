@@ -26,4 +26,8 @@ router.put('/:id', function(req,res,next){
   var room = req.body.room;
   res.send(timerMiddleware.setRoom(req.params.id,room));
 });
+
+router.post('/:id/start', function(req,res,next){
+  res.send(timerMiddleware.startTimer(req.params.id))
+});
 module.exports = router;

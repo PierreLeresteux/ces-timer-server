@@ -9,7 +9,7 @@
     <ul>
     {{#timers}}
       {{#room}}
-      <li><a href="/timer/{{id}}/info">{{room}}({{ip}})</a></li>
+      <li><a href="/timer/{{id}}/info">{{room}}({{ip}}) - status: {{status}} - Time : {{time.left}} left on {{time.total}}</a></li>
       {{/room}}
       {{^room}}
       <li>{{ip}} has no room</a></li>

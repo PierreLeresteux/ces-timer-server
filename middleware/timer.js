@@ -26,6 +26,13 @@ const timer = {
 
     },
 
+    startTimer(id){
+        var timer = this.getTimer(id)
+        request.post('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/start", { json: true }, (err, res, body) => {
+            if (err){return err}
+        });
+    },
+
     setRoom(id,room){
         id=Number(id);
         var timer = this.getTimer(id);
@@ -39,7 +46,7 @@ const timer = {
         var timer=this.timers[index];
         console.log(timer.room)
         request('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/ruok", { json: true }, (err, res, body) => {
-            if (err || body!=='ok'){
+            if (err || !body.ok){
                 timer.error+=1
                 this.timers[index]=timer
             }else{
@@ -50,8 +57,12 @@ const timer = {
                 console.log("Remove "+timer.room)
                 this.timers.splice(index, 1);
             }else{
-                
-                console.log(JSON.stringify(body));
+                if (body){
+                    console.log(body);
+                    timer.status=body.status;
+                    timer.time=body.time;
+                    this.timers[index]=timer;
+                }
                 setTimeout(()=>{this.callTimer(index)},blacklist.timer);
             }
         });  
@@ -66,6 +77,11 @@ var Timer = function(id,ip){
     this.id=id;
     this.ip=ip;
     this.error=0;
+    this.status=null;
+    this.time= {
+        left: 0,
+        total: 40
+    };
     this.room=null;
 }
 
