@@ -15,7 +15,13 @@ const timer = {
     },
 
     addTimer(ip){
+        var existingTimer = this.getTimerByIp(ip);
+        if (existingTimer){
+            console.log("Timer already exists");
+            return existingTimer;
+        }
         var id=this.nextId()
+        console.log("Create Timer "+ip+"[id : "+id+"]");
         this.timers.push(new Timer(id,ip));
         return this.getTimer(id);
     },
@@ -23,7 +29,10 @@ const timer = {
     getTimer(id){
         id=Number(id);
         return this.timers.find(function(e){return e.id===id});
+    },
 
+    getTimerByIp(ip){
+        return this.timers.find(function(e){return e.ip===ip});
     },
 
     startTimer(id){
@@ -42,10 +51,11 @@ const timer = {
         setTimeout(()=>{this.callTimer(index)},blacklist.timer);
         return timer;
     },
+
     callTimer(index){
         var timer=this.timers[index];
-        console.log(timer.room)
-        request('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/ruok", { json: true }, (err, res, body) => {
+
+        request('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/ruok", { json: true,timeout: 3300 }, (err, res, body) => {
             if (err || !body.ok){
                 timer.error+=1
                 this.timers[index]=timer
