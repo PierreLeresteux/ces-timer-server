@@ -21,5 +21,7 @@
         <li>time : {{timer.time.left}} mins left (total : {{timer.time.total}})</li>
     </ul>
     </div></div>
+    
+    <div class="pure-u-1-1"><button class="pure-button"><a href="/">< Back</a></button></div>
   </body>
 </html>

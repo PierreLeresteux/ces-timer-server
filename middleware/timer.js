@@ -1,4 +1,5 @@
 const request = require('request');
+const ip = require('ip');
 
 var id=0;
 const blacklist= {
@@ -52,10 +53,16 @@ const timer = {
         return timer;
     },
 
+    sendServerIpToTimer(timerIp){
+        request.post('http://'+timerIp+":"+blacklist.wemosHttpPort+"/server", { json: true, timeout:2000 }, (err, res, body) => {
+            if (err){return err}
+        }).form({serverIP:ip.address()});
+    },
+
     callTimer(index){
         var timer=this.timers[index];
 
-        request('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/ruok", { json: true,timeout: 3300 }, (err, res, body) => {
+        request('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/ruok?room="+timer.room, { json: true,timeout: 3300 }, (err, res, body) => {
             if (err || !body.ok){
                 timer.error+=1
                 this.timers[index]=timer
@@ -68,7 +75,6 @@ const timer = {
                 this.timers.splice(index, 1);
             }else{
                 if (body){
-                    console.log(body);
                     timer.status=body.status;
                     timer.time=body.time;
                     this.timers[index]=timer;

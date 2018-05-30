@@ -47,7 +47,11 @@
             </tbody>
         </table>
       </div>
+      
     </div>
+    <br />
+    <br />
+    <div class="pure-u-1-1"><button class="pure-button pure-button-primary"><a href="/setserver">(+) Set server</a></button></div>  
     
   </body>
 </html>
