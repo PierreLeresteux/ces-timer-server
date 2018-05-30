@@ -3,18 +3,51 @@
   <head>
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <ul>
-    {{#timers}}
-      {{#room}}
-      <li><a href="/timer/{{id}}/info">ID : {{id}} {{room}}({{ip}}) - status: {{status}} - Time : {{time.left}} left on {{time.total}}</a></li>
-      {{/room}}
-      {{^room}}
-      <li>ID : {{id}} ({{ip}}) has no room (<a href="/timer/{{id}}/room">Set room</a>)</li>
-      {{/room}}
-    {{/timers}}
-    </ul>
+    
+    <div class="pure-g">
+      
+      <div class="pure-u-1-1">
+        <h1>{{ title }}</h1>
+        <table class="pure-table pure-table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Room</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#timers}}    
+                {{#room}}  
+                <tr>
+                    <td><a href="/timer/{{id}}/info">{{id}}</a></td>
+                    <td>{{room}}</td>
+                    <td>{{status}}</td>
+                    <td>Time : {{time.left}} left on {{time.total}}</td>
+                </tr>
+                {{/room}}
+                {{^room}}
+                <tr>
+                    <td>{{ip}}</td>
+                    <td>No room assigned yet (<a href="/timer/{{id}}/room">Set room</a>)</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+
+                {{/room}}
+                {{/timers}}
+                
+            </tbody>
+        </table>
+      </div>
+    </div>
+    
   </body>
 </html>
