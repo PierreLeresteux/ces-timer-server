@@ -20,6 +20,7 @@
                     <th>Room</th>
                     <th>Status</th>
                     <th>Time</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -31,14 +32,16 @@
                     <td>{{room}}</td>
                     <td>{{status}}</td>
                     <td>Time : {{time.left}} left on {{time.total}}</td>
+                    <td><a href="/timer/{{id}}/start">Start</a></td>
                 </tr>
                 {{/room}}
                 {{^room}}
                 <tr>
                     <td>{{ip}}</td>
-                    <td>No room assigned yet (<a href="/timer/{{id}}/room">Set room</a>)</td>
+                    <td>No room assigned yet</td>
                     <td>N/A</td>
                     <td>N/A</td>
+                    <td><a href="/timer/{{id}}/room">Set room</a></td>
                 </tr>
 
                 {{/room}}
