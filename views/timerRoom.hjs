@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Info about {{timer.room}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Info about {{timer.room}}</h1>
+    <ul>
+        <li>id : {{timer.id}}</li>
+        <li>ip : {{timer.ip}}</li>
+    </ul>
+    <form action="/timer/{{timer.id}}/room" method="POST">
+      Room : <input type="text" name="room" /><br />
+      <input type="submit" value="Save"/><br />
+    </form>
+  </body>
+</html>

@@ -4,7 +4,7 @@ var id=0;
 const blacklist= {
     timer:3000,
     nbErrorMax:3,
-    wemosHttpPort:3001
+    wemosHttpPort:80
 }
 const timer = {
     
