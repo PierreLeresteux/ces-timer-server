@@ -15,7 +15,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
-app.use(logger('dev'));
+app.use(logger('short', {
+  skip: function (req, res) { return res.statusCode < 400 }
+}));
 app.use(express.json());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
