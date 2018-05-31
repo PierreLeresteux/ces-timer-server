@@ -37,8 +37,13 @@ router.post('/:id/room', function(req,res,next){
   res.redirect('/');
 });
 
-router.get('/:id/start', function(req,res,next){
-  timerMiddleware.startTimer(req.params.id);
+router.get('/:id/startTimer', function(req,res,next){
+  const timer = timerMiddleware.getTimer(req.params.id)
+  res.render('startTimer', { timer: timer });
+});
+
+router.post('/:id/start', function(req,res,next){
+  timerMiddleware.startTimer(req.params.id,req.body.time_total);
   res.redirect('/');
 });
 module.exports = router;

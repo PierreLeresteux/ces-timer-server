@@ -36,11 +36,11 @@ const timer = {
         return this.timers.find(function(e){return e.ip===ip});
     },
 
-    startTimer(id){
+    startTimer(id,time_total){
         var timer = this.getTimer(id)
         request.post('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/start", { json: true }, (err, res, body) => {
             if (err){return err}
-        }).form({time_total:45});
+        }).form({time_total:time_total});
     },
 
     setRoom(id,room){
@@ -96,7 +96,7 @@ var Timer = function(id,ip){
     this.status=null;
     this.time= {
         left: 0,
-        total: 45
+        total: 0
     };
     this.room=null;
 }

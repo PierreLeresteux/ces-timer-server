@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Set Server</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+  </head>
+  <body>
+    <div class="pure-g">
+      
+      <div class="pure-u-1-1">
+        <h1>Start the timer</h1>
+        <form class="pure-form" action="/timer/{{timer.id}}/start" method="POST">
+        <input type="hidden" name="time_total" value="45"/>
+        <button type="submit" class="pure-button pure-button-primary">Conf</button>  
+        </form>
+        <br />
+        <form class="pure-form" action="/timer/{{timer.id}}/start" method="POST">
+        <input type="hidden" name="time_total" value="15"/>
+        <button type="submit" class="pure-button pure-button-primary">Quickie</button>  
+        </form>
+        <br />
+        <form class="pure-form" action="/timer/{{timer.id}}/start" method="POST">
+        <input type="hidden" name="time_total" value="40"/>
+        <button type="submit" class="pure-button pure-button-primary">Keynote</button>  
+        </form>
+        <br />
+      </div>
+      
+      <div class="pure-u-1-1"><button class="pure-button"><a href="/">< Back</a></button></div>
+      
+    </div>
+  </body>
+</html>

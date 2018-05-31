@@ -5,6 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="2" >
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
   </head>
   <body>
@@ -16,7 +17,6 @@
         <table class="pure-table pure-table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Room</th>
                     <th>Status</th>
                     <th>Time</th>
@@ -28,16 +28,14 @@
                 {{#timers}}    
                 {{#room}}  
                 <tr>
-                    <td><a href="/timer/{{id}}/info">{{id}}</a></td>
-                    <td>{{room}}</td>
+                    <td><a href="/timer/{{id}}/info">{{room}}</a></td>
                     <td>{{status}}</td>
-                    <td>Time : {{time.left}} left on {{time.total}}</td>
-                    <td><a href="/timer/{{id}}/start">Start</a></td>
+                    <td>{{time.left}} / {{time.total}}</td>
+                    <td><button class="pure-button"><a href="/timer/{{id}}/startTimer">Start</a></button></td>
                 </tr>
                 {{/room}}
                 {{^room}}
                 <tr>
-                    <td>{{ip}}</td>
                     <td>No room assigned yet</td>
                     <td>N/A</td>
                     <td>N/A</td>
@@ -54,7 +52,7 @@
     </div>
     <br />
     <br />
-    <div class="pure-u-1-1"><button class="pure-button pure-button-primary"><a href="/setserver">(+) Set server</a></button></div>  
+    <div class="pure-u-1-1"><button class="pure-button pure-button-primary"><a href="/setserver">(+) Add timer</a></button></div>  
     
   </body>
 </html>
