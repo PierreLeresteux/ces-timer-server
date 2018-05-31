@@ -46,4 +46,8 @@ router.post('/:id/start', function(req,res,next){
   timerMiddleware.startTimer(req.params.id,req.body.time_total);
   res.redirect('/');
 });
+router.post('/:id/stop', function(req,res,next){
+  timerMiddleware.stopTimer(req.params.id);
+  res.redirect('/');
+});
 module.exports = router;

@@ -43,6 +43,13 @@ const timer = {
         }).form({time_total:time_total});
     },
 
+    stopTimer(id){
+        var timer = this.getTimer(id)
+        request.post('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/stop", { json: true }, (err, res, body) => {
+            if (err){return err}
+        });
+    },
+
     setRoom(id,room){
         id=Number(id);
         var timer = this.getTimer(id);

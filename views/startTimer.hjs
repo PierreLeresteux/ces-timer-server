@@ -27,6 +27,10 @@
         <button type="submit" class="pure-button pure-button-primary">Keynote</button>  
         </form>
         <br />
+        <form class="pure-form" action="/timer/{{timer.id}}/stop" method="POST">
+        <button type="submit" class="pure-button">STOP</button>  
+        </form>
+        <br />
       </div>
       
       <div class="pure-u-1-1"><button class="pure-button"><a href="/">< Back</a></button></div>
