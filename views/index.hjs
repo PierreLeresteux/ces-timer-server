@@ -30,7 +30,7 @@
                 <tr>
                     <td><a href="/timer/{{id}}/info">{{room}}</a></td>
                     <td>{{status}}</td>
-                    <td>{{time.left}} / {{time.total}}</td>
+                    <td>{{time.left}}/{{time.total}}</td>
                     <td><button class="pure-button"><a href="/timer/{{id}}/startTimer">Start</a></button></td>
                 </tr>
                 {{/room}}
