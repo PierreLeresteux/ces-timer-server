@@ -40,7 +40,7 @@ const timer = {
         var timer = this.getTimer(id)
         request.post('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/start", { json: true }, (err, res, body) => {
             if (err){return err}
-        });
+        }).form({time_total:45});
     },
 
     setRoom(id,room){
@@ -96,7 +96,7 @@ var Timer = function(id,ip){
     this.status=null;
     this.time= {
         left: 0,
-        total: 40
+        total: 45
     };
     this.room=null;
 }

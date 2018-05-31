@@ -37,7 +37,8 @@ router.post('/:id/room', function(req,res,next){
   res.redirect('/');
 });
 
-router.post('/:id/start', function(req,res,next){
-  res.send(timerMiddleware.startTimer(req.params.id))
+router.get('/:id/start', function(req,res,next){
+  timerMiddleware.startTimer(req.params.id);
+  res.redirect('/');
 });
 module.exports = router;
