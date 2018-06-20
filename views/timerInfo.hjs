@@ -17,6 +17,7 @@
         <li>ip : {{timer.ip}}</li>
         <li>status : {{timer.status}}</li>
         <li>error : {{timer.error}}</li>
+        <li>intensity : {{timer.intensity}}</li>
         <li>room : {{#timer.room}}{{timer.room}}{{/timer.room}}{{^timer.room}}No room{{/timer.room}}</li>    
         <li>time : {{timer.time.left}} mins left (total : {{timer.time.total}})</li>
     </ul>
