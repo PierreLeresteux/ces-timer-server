@@ -37,9 +37,12 @@ const timer = {
     },
 
     startTimer(id,time_total){
-        var timer = this.getTimer(id)
+        var timer = this.getTimer(id);        
         request.post('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/start", { json: true }, (err, res, body) => {
             if (err){return err}
+            var index=this.timers.findIndex(function(e){return e.id===id})
+            timer.canbestop=true;
+            this.timers[index]=timer;
         }).form({time_total:time_total});
     },
 
@@ -47,6 +50,9 @@ const timer = {
         var timer = this.getTimer(id)
         request.post('http://'+timer.ip+":"+blacklist.wemosHttpPort+"/stop", { json: true }, (err, res, body) => {
             if (err){return err}
+            var index=this.timers.findIndex(function(e){return e.id===id})
+            timer.canbestop=false;
+            this.timers[index]=timer;
         });
     },
 
@@ -100,6 +106,8 @@ var Timer = function(id,ip){
     this.id=id;
     this.ip=ip;
     this.error=0;
+    this.intensity=4;
+    this.canbestop=false;
     this.status=null;
     this.time= {
         left: 0,
